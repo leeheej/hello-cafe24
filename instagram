@@ -1,0 +1,9 @@
+[ 인스타그램 연동 오류일 경우 ]
+-lightwidget(자사몰에 인스타그램 연동해주는 프로그램) 로그인 (login with Instagram)
+  url : https://lightwidget.com/login?redirect=%2Fmy-widgets
+  ID : skanskin.official
+  PW : mon00886!!
+-계정 연결에 따른 정보 공유 허용
+-대시보드에서 access token 이 active 가 정상
+active가 아닐경우, refreshing 해주면 자동으로 갱신시켜줌.
+(특정 기간(인스타 설정인지 아닌지, 정확한 확인은 불가)이 지나면 access token 변경될 수 있음)
