@@ -5,6 +5,11 @@
 
 *jquery 가 기본 적용되지만, head 어딘가에서 시작하므로 제이쿼리가 불러와진 후에 $ 사용 가능
 
-*script 를 추가할땐,
-addEventListener 를 사용해보자
+*script 를 추가할땐, addEventListener 를 사용해보자
+cf) 링크로 추가된 css, script 는 카페24 디자인관리에서 자체 수정이 불가하므로 addEventListener 로 페이지 로딩된 후 수정 가능
+
+*<a href="#~~"></a> 해당 #~~  으로 이동할땐, 정확한 위치가 아닌 살짝 어긋나게 이동하기 때문에,
+해당 id 가 있는 dom 위에 <div id="~~"></div>를 추가해주는게 좋음
+
+
 
