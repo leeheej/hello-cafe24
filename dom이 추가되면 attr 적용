@@ -1,0 +1,28 @@
+
+
+
+		window.addEventListener("load",function(event) {
+            var gift = setInterval(function(){
+            //1초마다 실행되게 한다
+            
+              if($(".xans-gift").length > 0){
+              //.xans-gift 의 length가 0 초과가 되면 해당 클래스를 가진 dom 이 있다는거
+              
+                if($("#ec-shop-gift_orderform > div").hasClass("giftArea")){
+                //#ec-shop-gift_orderform 의 직속자손 div 가 .giftArea 일 경우
+                
+                  $("input:radio[name='sel_product[]']").eq(0).attr("checked", true);
+                  //첫번째 radio 버튼을 체크한다
+                  clearInterval(gift);
+                  //1초마다 실행하는 gift 함수 종로
+                  
+                }else{
+                }
+              }else{
+                //.xans-gift 라는 dom이 없을 경우
+                clearInterval(gift);
+                // gift 함수 종료
+              }
+            },1000);  
+            
+     });
