@@ -1,0 +1,15 @@
+[jquery로 before, after 제어하기]
+
+1. css 파일에서 ::after, ::before에 클래스명 하나 지정해주고, jquery에서 toggleClass로 관리.
+
+-::after의 content를 변경
+HTML : <span>before</span>
+CSS : span::after{content:attr(data-content)'ex'}
+JS : $("span").hover(function(){
+        $(this).addClass('change').attr('data-content','bar');
+      })
+      
+-stylesheet를 통채로 넣기
+$('<style>span::before{content:"'+str'"}</style>').appendTo('head');
+
+-javascript 에서 'addRule'사용하기
