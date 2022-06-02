@@ -56,5 +56,5 @@
             }
           </script>
           
-html과 css 아래에 위의 script 추가해주면 연동됨!
+카카오 공유하기 버튼 DOM과 css 아래에 위의 script 추가해주면 연동됨!
 
