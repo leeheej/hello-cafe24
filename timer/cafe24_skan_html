@@ -1,0 +1,113 @@
+<!--@css(/timesale/timesale.css)-->
+<!--@js(/timesale/timerE.js)-->
+  	<section id="timesale" style="display:none;">
+		<div class="time_title">
+			<p>전제품 마지막 1+1 곧 완전 종료!</p>
+        </div>
+        <div class="time">
+            <div class="clock">
+            	<span class="day">00</span>
+                <em>:</em>
+                 <span class="hr">00</span>
+                 <em>:</em>
+                 <span class="min">00</span>
+                 <em>:</em>
+                  <span class="sec">00</span>
+            </div>
+        </div>
+    </section>
+
+<!--@css(/timesale/timesale.css)-->
+<!--@js(/timesale/timer4.js)-->
+  	<section id="timesale" style="display:none;">
+		<div class="time_title">
+			<p>5/23 오늘 단 하루 전제품 50% OFF !</p>
+        </div>
+        <div class="time">
+            <div class="clock">
+                 <span class="hr">00</span>
+                 <em>:</em>
+                 <span class="min">00</span>
+                 <em>:</em>
+                  <span class="sec">00</span>
+            </div>
+        </div>
+    </section>
+
+<!-- 상세 타이머 -->
+            
+            <div id="timerDetail" style="display:none;">
+                <div id="secretBanner0509" style="display:none;">
+                   <section id="timesale" style="display:none;">
+                        <div class="time_title">
+                            <p>오직 여기서만 50% 특별 혜택!</p>
+                        </div>
+                        <div class="time">
+                            <div class="clock">
+                                <span class="day2">00</span>
+                                <em>:</em>
+                                <span class="hr">00</span>
+                                <em>:</em>
+                                <span class="min">00</span>
+                                <em>:</em>
+                                <span class="sec">00</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div id="secret0508"><img src="/web/upload/2022/shoppingBox/event_secret0515.jpeg" alt="top_event_banner" style="width:1000px; margin:50px auto; display:block;"></div>
+                </div>
+                <div id="secretBanner0522" style="display:none;">
+                   <section id="timesale2" style="display:none;">
+                        <div class="time_title">
+                            <p>오직 여기서만 50% 특별 혜택!</p>
+                        </div>
+                        <div class="time">
+                            <div class="clock">
+                                <span class="day">00</span>
+                                <em>:</em>
+                                <span class="hr">00</span>
+                                <em>:</em>
+                                <span class="min">00</span>
+                                <em>:</em>
+                                <span class="sec">00</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div id="secret0522"><img src="/web/upload/2022/shoppingBox/shopping0520.jpeg" alt="top_event_banner" style="width:1000px; margin:50px auto; display:block;"></div>
+                </div>
+            </div>
+
+<!---->
+            <div id="timerDetail" style="display:none;">            
+                   <section id="timesale" style="display:none;">
+                        <div class="time_title">
+                            <p>전제품 50%할인! 곧 완전 종료!</p>
+                        </div>
+                        <div class="time">
+                            <div class="clock">
+                                <span class="hr">00</span>
+                                <em>:</em>
+                                <span class="min">00</span>
+                                <em>:</em>
+                                <span class="sec">00</span>
+                            </div>
+                        </div>
+                    </section>
+                   
+                   <section id="timesale2" style="display:none;">
+                        <div class="time_title">
+                            <p>전제품 50%할인! 곧 완전 종료!</p>
+                        </div>
+                        <div class="time">
+                            <div class="clock">
+                                <span class="day">00</span>
+                                <em>:</em>
+                                <span class="hr">00</span>
+                                <em>:</em>
+                                <span class="min">00</span>
+                                <em>:</em>
+                                <span class="sec">00</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
