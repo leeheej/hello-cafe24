@@ -1,0 +1,54 @@
+<!--타이머-->
+	<!--@css(/timesale/timesale.css)-->
+	<!--@js(/timesale/timer.js)-->
+            <div id="timerDetail" style="display:none;">
+               <section id="timesale" style="display:none;">
+                    <div class="time_title">
+                        <p>4/24 오늘 단 하루 전제품 50% OFF !</p>
+                    </div>
+                    <div class="time">
+                        <div class="clock">
+                            <!--
+                            <span class="day">00</span>
+                            <em>:</em>-->
+                            <span class="hr">00</span>
+                            <em>:</em>
+                            <span class="min">00</span>
+                            <em>:</em>
+                            <span class="sec">00</span>
+                        </div>
+                    </div>
+                </section>
+                <div><img src="/web/upload/2022/detail/naver/event0410.jpg" alt="top_event_banner" style="width:1000px; margin:50px auto; display:block;"></div>
+            </div>     
+
+        <div id="onedayTimer">
+           <section id="detailTimer" style="display:none;">
+              <div class="time_title">
+                <p>5/7 오늘 단 하루! 전제품 50% OFF!<p>
+              </div>
+              <div class="time">
+                <div class="clock">
+                  <span class="hr">00</span>
+                  <em>:</em>
+                  <span class="min">00</span>
+                  <em>:</em>
+                  <span class="sec">00</span>
+                </div>
+              </div>
+           </section>
+           <section id="detailTimer2" style="display:none;">
+              <div class="time_title">
+                <p>5/8 오늘 단 하루! 전제품 50% OFF!<p>
+              </div>
+              <div class="time">
+                <div class="clock">
+                  <span class="hr">00</span>
+                  <em>:</em>
+                  <span class="min">00</span>
+                  <em>:</em>
+                  <span class="sec">00</span>
+                </div>
+              </div>
+           </section>
+        </div>
