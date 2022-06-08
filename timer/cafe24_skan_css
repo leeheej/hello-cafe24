@@ -1,0 +1,41 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+/* font-family: 'Orbitron', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&display=swap');
+/* font-family: 'Playfair Display', serif; */
+
+#timesale *{margin:0; padding:0;}
+#timesale ul{list-style:none;}
+#timesale a{text-decoration:none;}
+#timesale img{max-width:100%; display:block;}
+#timesale .blind{width:0; height:0; display:block; position:absolute; line-height:0; text-indent:-999px;}
+
+#timesale .time_title, #timesale .time{font-size:50px; text-align:center; font-weight:700; margin:50px auto; color:black; line-height:50px; font-family: 'Playfair Display', serif;}
+#timesale .time{ font-size:100px; line-height:100px; margin-bottom:30px;}
+#timesale .clock{width:925px; box-sizing:border-box; margin:0 auto; padding:24px 0 20px; border: 2px solid black; box-shadow:2px 2px rgba(0,0,0,0.5);}
+#timesale .clock span{text-shadow:1px 1px rgba(0,0,0,0.5); display:inline-block; width:150px;}
+#timesale .clock i, #timesale .clock em{font-style:normal; text-shadow:1px 1px rgba(0,0,0,0.5); display:inline-block; vertical-align:top;}
+#timesale .clock .day::after,#timesale .clock .day2::after, #timesale .clock .hr::after, #timesale .clock .min::after, #timesale .clock .sec::after{display:block; font-size:20px; line-height:30px; text-shadow:none; padding-top:10px;}
+#timesale .clock .day::after, #timesale .clock .day2::after{content:"day";}
+#timesale .clock .hr::after{content:"hours"; }
+#timesale .clock .min::after{content:"minutes"; }
+#timesale .clock .sec::after{content:"seconds"; }
+
+
+
+#timesale2 *{margin:0; padding:0;}
+#timesale2 ul{list-style:none;}
+#timesale2 a{text-decoration:none;}
+#timesale2 img{max-width:100%; display:block;}
+#timesale2 .blind{width:0; height:0; display:block; position:absolute; line-height:0; text-indent:-999px;}
+
+#timesale2 .time_title, #timesale2 .time{font-size:50px; text-align:center; font-weight:700; margin:50px auto; color:black; line-height:50px; font-family: 'Playfair Display', serif;}
+#timesale2 .time{ font-size:100px; line-height:100px; margin-bottom:30px;}
+#timesale2 .clock{width:925px; box-sizing:border-box; margin:0 auto; padding:24px 0 20px; border: 2px solid black; box-shadow:2px 2px rgba(0,0,0,0.5);}
+#timesale2 .clock span{text-shadow:1px 1px rgba(0,0,0,0.5); display:inline-block; width:150px;}
+#timesale2 .clock i, #timesale2 .clock em{font-style:normal; text-shadow:1px 1px rgba(0,0,0,0.5); display:inline-block; vertical-align:top;}
+#timesale2 .clock .day::after,#timesale2 .clock .day2::after, #timesale2 .clock .hr::after, #timesale2 .clock .min::after, #timesale2 .clock .sec::after{display:block; font-size:20px; line-height:30px; text-shadow:none; padding-top:10px;}
+#timesale2 .clock .day::after, #timesale2 .clock .day2::after{content:"day";}
+#timesale2 .clock .hr::after{content:"hours"; }
+#timesale2 .clock .min::after{content:"minutes"; }
+#timesale2 .clock .sec::after{content:"seconds"; }
