@@ -1,0 +1,59 @@
+카페24 에서 제품 카카오톡 공유하기는 무료 제공이 안됨.
+자바스크립트 기반 카카오톡 메시지 연동 / 카카오링크 연동하기!!
+
+1. 가가오 개발자도구 API 사이트 'Kakao Developers' 가입
+   > 어플리케이션 추가 > 플랫폼 설정 > 기본정보 입력 > java script key 받아오기
+   (https://developers.kakao.com/ 에서 가입해도 되고, 
+   카페24의 경우 
+   상점관리 > 채널관리 > 카카오 > 카카오비즈니스 > 카카오 싱크
+   사용중이라면 JavaScript Key 바로 확인 가능함)
+2. 공유하기 코드 추가하기
+3. 디자인 세팅하기
+
+/*challans 자사몰의 경우*/
+<button type="button" class="sharebutton {$buy_display|display}">공유하기</button>
+공유하기 버튼이 {$buy_display|display}로 구매 가능할 경우 보여지고 있음.
+해당 공유하기 버튼을 클릭하면 sns 공유하기 팝업인 snsLink가 뜸
+<div class="snsLink {$sns_display|display}">
+  <ul>
+    <li>
+        <p class="snsShareIcon share_facebook" onclick="SnsLinkAction('facebook',{$product_no});"></p>
+    </li>
+    <li>
+        <p class="snsShareIcon share_twitter" onclick="SnsLinkAction('twitter',{$product_no});"></p>
+    </li>
+    <li>
+        <p class="snsShareIcon share_kakao" onclick="send_kakao_talk_url()"></p>
+    </li>
+    <li>
+        <p class="snsShareIcon snsShare-close">X</p>
+    </li>
+  </ul>
+</div>
+여기서 <p class="snsShareIcon share_kakao"></p> 해당 p태그 클릭시 onclick="send_kakao_talk_url() 이벤트로 공유하기를 실행시킴.
+        <script>
+            function send_kakao_talk_url() {
+                try {
+                        if (Kakao) {
+                            Kakao.init("java script key값을 입력"); 
+                        } 
+                    } catch(e) {
+
+                    };
+                Kakao.Link.sendDefault({
+                    objectType : "feed", content : {
+                        title : "{$name|striptag}",
+                        description : "상품설명",
+                        imageUrl : "http:{$small_img}",
+                        imageWidth : 420, imageHeight : 300,
+                        link : {
+                            mobileWebUrl : "https://m.도메인/product/detail.html?product_no={$product_no}", 
+                            webUrl : "https://도메인/product/detail.html?product_no={$product_no}" 
+                        } 
+                    },
+                    buttonTitle : "상품 보기", 
+                });
+            }
+          </script>
+          
+카카오 공유하기 버튼 DOM과 css 아래에 위의 script 추가해주면 연동됨!
