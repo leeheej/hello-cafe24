@@ -1,0 +1,22 @@
+[overflow]
+overflow:visible;
+기본값. 영역에서 넘쳐도 보여짐
+overflow:hidden;
+해당 영역 밖으로 넘치는 contents는 가려짐
+overflow:scroll;
+x,y 축 따로 설정 가능. 스크롤이 생성됨.
+overflow:auto;
+contents에 따라서 영역 안에 다 들어오면 그냥 보여지고, 영역을 넘으면 스크롤이 생성됨.
+
+/*스크롤 없애기*/
+맥과 아이폰의 경우, 스크롤 바가 화면상의 공간을 차지하지 않기 때문에 실제 콘텐츠가 렌더링되는 영역에 영향을 주지 않는다.
+그러나 윈도우의 경우, 스크롤바가 화면 상의 실제 공간을 차지하므로 콘텐츠가 렌더링되는 영역 또한 스크롤바의 영역만큼 줄어돈다.(레이아웃이 뒤틀릴 수 있음)
+
+.example::-webkit-scrollbar{display:none;}
+/*Hide scrollbar for IE, Edge and Firefox*/
+.example{
+  -ms-overflow-style:none; /*IE and Edge*/
+  scrollbar-width:none; /*Firefox*/
+}
+
+혹은 perfect-scrollbar 라이브러리를 활용하여서 모든 브라우저 및 os에서 동일한 형태로 보여지는 스크롤바 구현 가능하다.
