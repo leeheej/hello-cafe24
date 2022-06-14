@@ -12,8 +12,8 @@ contents에 따라서 영역 안에 다 들어오면 그냥 보여지고, 영역
 맥과 아이폰의 경우, 스크롤 바가 화면상의 공간을 차지하지 않기 때문에 실제 콘텐츠가 렌더링되는 영역에 영향을 주지 않는다.
 그러나 윈도우의 경우, 스크롤바가 화면 상의 실제 공간을 차지하므로 콘텐츠가 렌더링되는 영역 또한 스크롤바의 영역만큼 줄어돈다.(레이아웃이 뒤틀릴 수 있음)
 
-.example::-webkit-scrollbar{display:none;}
-/*Hide scrollbar for IE, Edge and Firefox*/
+
+.example::-webkit-scrollbar{display:none;} /*Chrome, Safari and Opera*/
 .example{
   -ms-overflow-style:none; /*IE and Edge*/
   scrollbar-width:none; /*Firefox*/
