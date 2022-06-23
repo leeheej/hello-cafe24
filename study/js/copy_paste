@@ -1,0 +1,20 @@
+<script>
+function copyText(id){
+    var hashtag = document.createRange();
+    hashtag.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(hashtag);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    alert('복사되었습니다.');
+}
+</script>
+<section>
+  <h2>&#35; 인스타그램 <strong>해시태그</strong> 이벤트</h2>
+  <p id="eventHashtag">&#35;인스타그램 &#35;해시태그 &#35;이벤트 &#35;html &#35;css &#35;javscript &#35;jquery</p>
+  <div class="btn_area">
+      <div class="btnHash"><a href="#" onclick="copyText('eventHashtag');return false;">복사하기</a></div>
+      <p class="btn_instagram"><a href="https://instagram.com" target="_blank"><img src="/web/upload/common/icon_insta_on.png" alt="instagram"></a></p>
+  </div>
+
+</section>
