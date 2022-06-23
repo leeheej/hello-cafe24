@@ -1,0 +1,32 @@
+<colgroup> 요소는 각 행(row)이나 셀(cell)의 스타일을 반복하지 않고, 열(column) 전체에 다른 스타일을 적용하고 싶을 때 유용하게 사용할 수 있습니다.
+반복되는 패턴의 스타일도 적용 가능합니다.
+
+                <table border="1" summary="">
+                    <caption>상품 목록</caption>
+                    <colgroup>
+                        <col style="width:284px;" />
+                        <col style="width:80px;" />
+                        <col style="width:110px;" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">상품명</th>
+                            <th scope="col">상품수</th>
+                            <th scope="col">가격</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{$name}<!-- name --></td>
+                            <td>
+                                <span class="quantity">{$quantity}</span>
+                            </td>
+                            <td class="right"><span class="{$total.quantity_price}">{$product_price}</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><strong>총 상품금액</strong>(수량) : <span class="{$total.total_cnt}"><strong><em>0</em></strong> (0개)</span></td>
+                        </tr>
+                    </tfoot>
+                </table>
