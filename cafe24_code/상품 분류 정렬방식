@@ -1,0 +1,65 @@
+<div module="product_normalmenu" style="position:relative;">
+	  <!--@css(/css/module/product/normalmenu.css)-->
+  <!-- 상품진열타입 변경 -->
+	<div id="prd_view_type" class="none_blank" style="text-align:right;">
+		<ul>
+			<li class="view2"><img src="/postfixo/images/common/icon_list.png" alt="" /></li>
+			<li class="view3"><img src="/postfixo/images/common/icon_thumbon.png" alt="" /></li>
+		</ul>
+	</div>
+
+    <div class="sort" style="position:absolute; top:14px;">
+        <select id="selArray" name="selArray" module="product_Orderby">
+            <option value="{$param}">{$sort_name}</option>
+            <option value="{$param}">{$sort_name}</option>
+        </select>
+    </div>
+    <!-- 카페24 기본 진열타입 스트립트ul class="viewType">
+        <li class="list selected"><a href="/product/list.html{$params}">목록형으로 보기</a></li>
+        <li class="thumb"><a href="/product/list_thumb.html{$params}">이미지형으로 보기</a></li>
+        <li class="gallery"><a href="/product/list_gallery.html{$params}">갤러리형으로 보기</a></li>
+        <li class="slide"><a href="/product/list_zoom.html{$params}">확대보기</a></li>
+    </ul-->
+</div><!-- //참고 -->
+
+[normalmenu.css]
+.xans-product-normalmenu { overflow:hidden; padding:14px;}
+.xans-product-normalmenu .sort { float:left; }
+.xans-product-normalmenu .sort select { max-width:150px; }
+.xans-product-normalmenu .viewType { width:129px; float:right; font-size:0; }
+.xans-product-normalmenu .viewType { border-radius:4px; -webkit-border-radius:4px; }
+.xans-product-normalmenu .viewType li { display:inline-block; width:31px; height:27px; border:1px solid #d5d5d5; border-right:0; background-size:50%; background-repeat:no-repeat; background-position:center; }
+.xans-product-normalmenu .viewType li:first-child { border-radius:4px 0 0 4px; -webkit-border-radius:4px 0 0 4px; }
+.xans-product-normalmenu .viewType li:last-child { border-radius:0 4px 4px 0; -webkit-border-radius:0 4px 4px 0; border-right:1px solid #d5d5d5; }
+.xans-product-normalmenu .viewType li.selected { background-color:#4a5164; border-color:#404757; }
+.xans-product-normalmenu .viewType li a { display:block; height:100%; }
+.xans-product-normalmenu .viewType li.list { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_list.png"); }
+.xans-product-normalmenu .viewType li.thumb { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_thumb.png"); }
+.xans-product-normalmenu .viewType li.gallery { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_gallery.png"); }
+.xans-product-normalmenu .viewType li.slide { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_slide.png"); }
+.xans-product-normalmenu .viewType li.selected.list { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_list_on.png"); }
+.xans-product-normalmenu .viewType li.selected.thumb { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_thumb_on.png"); }
+.xans-product-normalmenu .viewType li.selected.gallery { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_gallery_on.png"); }
+.xans-product-normalmenu .viewType li.selected.slide { background-image:url("http://img.echosting.cafe24.com/skin/mobile_ko_KR/product/ico_slide_on.png"); }
+
+[상품진열타입 변경]
+$(document).ready(function(){
+	// 상품진열타입변경
+	$('#prd_view_type .view2').click(function(){
+		$('.fixo_view ul').removeClass('grid2');
+		$('.fixo_view ul').addClass('grid1');
+		$('.view2 img').attr('src', '/postfixo/images/common/icon_liston.png');
+		$('.view3 img').attr('src', '/postfixo/images/common/icon_thumb.png');
+	});
+	$('#prd_view_type .view3').click(function(){
+		$('.fixo_view ul').removeClass('grid1');
+		$('.fixo_view ul').addClass('grid2');
+		$('.view2 img').attr('src', '/postfixo/images/common/icon_list.png');
+		$('.view3 img').attr('src', '/postfixo/images/common/icon_thumbon.png');
+	});
+});
+
+
+[카페24 세팅]
+상점관리 > 운영관리 > 상품목록 화면 설정 
+에서 설정한대로 쇼핑몰에 
