@@ -1,0 +1,66 @@
+[assign]
+location.assign("https://www.w3schools.com");
+- Load a new document
+- replace() 와 비슷하지만, replace는 현재 url을 history에서 삭제하기때문에 "back"을 사용할 수 없음
+
+[replace]
+location.replace("https://www.w3schools.com");
+- Replace the current document
+
+[hash]
+<a href="/js/js_strings.asp#part2">JavaScript Strings</a>
+- The location.hash property sets or returns the anchor part of a URL, including the hash sign (#).
+- When location.hash is used to set the anchor part, do not include the hash sign (#).
+location.hash = anchorname
+
+[host]
+let host = location.host;
+- Get the host and port of the current URL
+- If the port number is not specified in the URL, or if it is a default port (80 for http) or (443 for https), most browsers will return an empty string.
+
+[hostname]
+let hostname = location.hostname;
+- Return the hostname of the current URL
+- host just includes the port number if there is one specified. If there is no port number specifically in the URL, then it returns the same as hostname. 
+  (hostname : host에서 포트번호 제거)
+ex : https://example.org:888/test/ex#cf
+    > hostname : example.org
+    > host : example.org:888
+    
+[href]
+let url = location.href; //Get the URL of the current page
+location.href = "https://www.w3schools.com"; //Set the URL of the current page
+- The location.href property sets or returns the entire URL of the current page.
+
+[origin]
+let origin = location.origin;
+- Get the protocol, hostname and port number of the URL // read-only.
+
+[pathname]
+let path x = location.pathname;
+- url 에서 host 다음의 경로. ? 전까지
+- The pathname property sets or returns the pathname of a URL (page).
+
+[port]
+let port = location.port;
+- The port property sets or returns the port number of a URL.
+- If the port number is default (80 for http and 443 for https), most browsers return nothing.
+
+[protocol]
+let protocol = location.protocol; // 보통 return https:
+- The protocol property sets or returns the protocol of the current URL, including the colon (:).
+
+
+[reload]
+location.reload();
+- The reload() method reloads the current document.
+
+[search]
+let query = location.search;
+- Return the querystring part of a URL, including the question mark (?). (The querystring is used for parameter passing)
+
+
+
+
+
+
