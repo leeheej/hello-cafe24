@@ -44,3 +44,14 @@ https://ecsupport.cafe24.com/board/tip/read.html?no=1387&board_no=101&search=%EC
                   - 좋아요 순: like_count
               -->
         </div>
+
+[추천 검색어]
+        <div module="search_hotkeyword" style="display:flex; width:1000px; margin:20px auto 0; ">
+            <p style="width:200px; font-weight:bold; text-align:center;">추천 검색어</p>
+            <ul style="display:flex; justify-content:center;">
+                <li style="margin:0 20px;"><a href="{$hot_keyword_url}">&#35; {$hot_keyword_name}</a></li>
+                <li style="margin:0 20px;"><a href="{$hot_keyword_url}">&#35; {$hot_keyword_name}</a></li>
+            </ul>
+        </div>
+카페24 추천검색어 세팅
+상점운영 > 운영관리 > 상품건색 설정 > 인기검색어 설정
