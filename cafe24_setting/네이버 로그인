@@ -40,3 +40,9 @@ API 설정 메뉴에서는 사용하려는 API 종류와 API 서비스 환경을
 - 실제 서비스 하는 사이트 URL과 동일한지 확인 (www, 포트번호, http/https 구분 없이 도메인명만 정확히 입력)
 - 도메인은 최대 10개 까지 등록 가능하며 서브 도메인이 있을 경우는 대표 도메인만 www 없이 입력 (예: http://naver.com)
 - 하이브리드앱이나 윈도우 애플리케이션은 location.href 객체 출력 값을 입력 (예: file://로컬URI)
+
+로그인 오류 참고사이트
+https://help.naver.com/service/23029/contents/20352?lang=ko
+
+
+
