@@ -1,0 +1,43 @@
+[함수 선언]
+1. 
+function functionName( argument1, argument2, ... ) {
+  // Do Something
+}
+=>>
+함수 선언 전&후 모두 호출 가능
+
+2.
+var functionName = function( argument1, argument2, ... ) {
+  // Do Something
+};
+=>>
+함수 선언 후 호출
+
+3.
+var hello = (function () {
+  //...
+})()
+=>> 즉시 실행됨
+
+4.
+var hello = () => {
+  //...
+}
+
+[함수 호출]
+functionName( value1, value2, ... );
+
+- 인자를 사용하는 함수 선언 및 호출
+* 인자의 개수와 값의 개수가 같으면 아무런 문제 없이 출력됩니다.
+* 값이 인자보다 적으면 값이 없는 인자는 undefined를 반환합니다.
+* 값이 인자보다 많으면 인자보다 많은 값은 무시됩니다.
+function jbFunction( jbName, jbJob ) {
+  document.write( '<h1>My name is <span>' + jbName + '</span>. I am a <span>' + jbJob + '</span>.</h1>' );
+}
+jbFunction( 'John', 'student' );
+jbFunction( 'John' );
+jbFunction( 'John', 'student', 'male' );
+=>> 출력값
+My name is John.I am a student.
+My name is John.I am a undefined.
+My name is John.I am a student.
