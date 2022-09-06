@@ -1,0 +1,27 @@
+fixed가 브라우저 화면의 절대 위치를 사용하는 반면, sticky는 부모 태그의 절대 위치값을 사용하는 방법입니다.
+그러므로 sticky의 상위 부모 컨테이너가 존재해야 합니다. (부모의 상단 offset 0으로 부터 적용됩니다.
+javascript로 표현 가능한 방벙을 간단하게 css로 구현 가능하지만, ie11 이하 버전은 지원하지 않는 단점이 있으며
+앳지 이상, 크롬, 사파리에서는 지원합니다.
+.content{
+  width:80%;
+  height:800px; // 자식요소인 .sticky 조다 높이가 높아야지 효과가 눈에 보임
+}
+.sticky{
+  width:20%;
+  height:400px; // sticky가 적용될 요소는 꼭 height값이 있어야함
+  position:sticky;
+  top:0; 
+}
+
+
+/*** 화면 두개로 나눠서 한쪽은 꽉차게 보이고 다른쪽은 스크롤되게 보이게 하는 작업***/
+<section> // width:100%; position:relative; height:auto;
+  <div class="stage"> // position:sticky; top:0; width:50%; height:100vh;
+    <div> // width:100%; height:100%; position:relative; overflow:hidden;
+      <div>
+      </div>
+    </div>
+  </div>
+  <div class="content"> // width:50%; position:relative; 
+  </div>
+</section>
