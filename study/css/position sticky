@@ -17,8 +17,8 @@ javascript로 표현 가능한 방벙을 간단하게 css로 구현 가능하지
 /*** 화면 두개로 나눠서 한쪽은 꽉차게 보이고 다른쪽은 스크롤되게 보이게 하는 작업***/
 <section> // width:100%; position:relative; height:auto;
   <div class="stage"> // position:sticky; top:0; width:50%; height:100vh;
-    <div> // width:100%; height:100%; position:relative; overflow:hidden;
-      <div>
+    <div> // width:100%; height:100%; position:relative; 
+      <div> // overflow:hidden; position:relative; display:block;
       </div>
     </div>
   </div>
