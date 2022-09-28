@@ -1,0 +1,26 @@
+[jQuery]
+// 홈페이지를 스크롤을 올리고 내리고에 따라 무언가가 보이거나 안보이게 하기
+let lastScroll = 0;
+$(window).on('scroll', function(){
+  let scrollTop = $(this).scrollTop();
+  if(scrollTop > lastScroll){
+  //down
+    $(".content").removeClass("scroll");
+  } else {
+   //up
+    $(".content").addClass("scroll");
+  }
+  lastScroll = scrollTop;
+});
+
+[javascript]
+let lastScroll = document.documentElement.scrollTop || 0
+document.addEventListener("scroll", function(){
+  let scrollTop = document.documentElement.scrollTop
+  if(scrollTop > lastScroll){
+    //down
+  } else{
+    //up
+  }
+  lastScroll = scrollTop
+})
