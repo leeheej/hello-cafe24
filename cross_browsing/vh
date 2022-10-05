@@ -8,7 +8,7 @@ url바는 상황에 따라 보여지거나 없어지는 경우가 있습니다. 
 ios safari 브라우저의 경우, 상단의 노치와 url바 혹은 하단의 툴바로 인해 화면의 크기(viewport)를 실제 보여지는 윈도우 innerHeight보다 크게 잡습니다. 
 그래서 document의 height을 100vh로 잡아 작성하더라도 실제 safari 모바일 화면에서는 스크롤바가 생깁니다.
 
-[[[[[100vh 화면에 맞추는 해결]]]]]
+[[[[[해결]]]]]
 
 1) 자바스크립트 + CSS로 해결
 먼저 vh를 선언해줍니다.
@@ -46,6 +46,7 @@ body {
 }
 
 2) CSS로 해결
+calc 를 사용할 필요 없이 무조건 100vh 만 필요한 상황이라면, 간단하게 -webkit-fill-available 을 사용할 수 있다.
 
 min-height: 100vh;
 min-height: -webkit-fill-available; 
