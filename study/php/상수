@@ -1,0 +1,39 @@
+상수(constant)
+변수와 마찬가지로 데이터를 저장할 수 있는 메모리 공간을 의미.
+한 번 선언되면, 스크립트가 실행되는 동안 그 데이터를 변경하거나 해제(undefined)할 수 없다는 점이 변수와 다름
+
+*define()
+원형: (대소문자는 기본값 false로 구분함)
+define(상수 이름, 상숫값, 대소문자 구분 여부)
+
+function defFunc(){
+  echo PHP; // PHP
+  define("PHP","PHP수업");
+  echo php; // php
+  echo PHP; // PHP수업
+  define ("PHP","PHP수업", true);
+  echo php; // PHP수업
+}
+echo PHP; // PHP수업
+
+
+* 마법 상수(magic constants)
+어떤 스크립트에서도 사용할 수 있는 미리 정의된 다양한 상수 제공
+-php에 미리 정의도니 모든 상수를 출력해주는 예제
+echo "<pre>";
+print_r(get_defined_constnts(true));
+echo "</pre>;
+
+-마법 상수는 대소문자 구분 없음
+__LINE__ //파일의 현재 줄 번호를 반환
+__FILE__ // 파일 전체 경로와 이름을 반환. 
+__DIR__ // 파일의 디렉터리를 반환
+__FUNCTION__ //함수의 이름은 반환
+__CLASS__ // 클래스의 이름을 반환. 대소문자 구분함
+__TRAIT__ // 트레이트 이름을 반환 (트레이트를 선언한 네임스페이스를 포함함)
+__METHOD__ // 클래스의 메소드 이름을 반환
+__NAMESPACE__ // 현재 네임스페이스 이름 
+
+function magicCons(){
+  echo __LINE__;
+}
