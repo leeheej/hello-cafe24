@@ -1,0 +1,35 @@
+vh 오류 상황
+: 100vh가 모바일웹에서 url 표시 공간까지 높이로 인지되어서 css상 오류가 나는 문제를 발견.
+
+java script + css 로 해결!
+해결 1. (리액트)
+<script>
+  let vh = 0;
+  useEffect(() => {
+    vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', '${vh}px');
+  } []);
+</script>
+<style>
+  /*height : 100vh*/
+  height: calc(var(--vh, 1vh)*100);
+</style>
+
+전체 innerHeight을 기준으로 100분의1 px을 1vh로 세팅.
+
+해결 2.
+const setVh = () => {
+  document.documentElement.style.setProperty('--vh', '${window.}px')
+};
+window.addEventListener('resize',setVh);
+setVh();
+
+<style>
+  :root{--vh : 100%;}
+  html,body{
+    height:100vh;
+    height:var(--vh);
+  }
+</style>
+리사이즈 될 때마다, 전체 innerHeight을 px을 --vh=100%로 세팅.
+
