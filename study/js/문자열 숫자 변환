@@ -1,0 +1,46 @@
+1. Number(0
+const str = '1234';
+const num1 = Number(str);
+const num2 = Number('1234.5');
+const num3 = Number(undefined);
+const num4 = Number('abcd');
+console.log(num1 + typeof num1); // 1234, number
+console.log(num2 + typeof num2); // 1234.5, number
+console.log(num3 + typeof num3); // NaN, number
+console.log(num4 + typeof num4); // NaN, number
+
+2. parseInt();
+const str = '1234';
+const num1 = parseInt(str);
+const num2 = parseInt('1234.5');
+const num3 = parseInt(undefined);
+const num4 = parseInt('abcd');
+console.log(num1 + typeof num1); // 1234, number
+console.log(num2 + typeof num2); // 1234, number
+console.log(num3 + typeof num3); // NaN, number
+console.log(num4 + typeof num4); // NaN, number
+
+3. parseFloat();
+const str = '1234';
+const num1 = parseFloat(str);
+const num2 = parseFloat('1234.5');
+const num3 = parseFloat(undefined);
+const num4 = parseFloat('abcd');
+console.log(num1 + typeof num1); // 1234, number
+console.log(num2 + typeof num2); // 1234.5, number
+console.log(num3 + typeof num3); // NaN, number
+console.log(num4 + typeof num4); // NaN, number
+
+4. Math
+- ceil (올림)
+- round (반올림)
+- floor (버림)
+const str = '1234.1';
+const num1 = Math.ceil(str);
+const num2 = Math.floor('1234.6');
+const num3 = Math.round('1234.5');
+const num4 = Math.round(1234.4);
+console.log(num1 + typeof num1); // 1235, number
+console.log(num2 + typeof num2); // 1234, number
+console.log(num3 + typeof num3); // 1235, number
+console.log(num4 + typeof num4); // 1234, number
