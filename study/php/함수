@@ -60,5 +60,97 @@ php에서 함수 이름을 작성할 때 주의사항.
   2. 참조 전달(passing by reference)
   함수 내부에서 함수 밖으로 데이터를 조작하기 위해서는 해당 변수를 전역 변수로 선언할 수 있음.
   하지만 참조 전달을 이용하면 더욱 유연한 코드를 작성 가능.
+  참조 전달은 원본 데이터의 복사된 값을 가지는 것이 아니라, 원본 데이터를 그대로 참조.
+  -> 내부에서 값을 변경하면 함수 밖의 원본 데이터도 같이 변경됨.
+  참조 전달을 사용하기 위해서는 함수를 선언할 때 매개변수 앞에  '&'기호를 붙임.
+  function increment(&$para){
+    $para++;
+  }
+  $value=1;
+  increment($value);
+  3. 디폴트 매개변수 default parameter
+  디폴트 매개변수란 함수를 호출할 때 명시된 매개변수를 전달하지 않았을 경우에 사용하게 될 기본값을 의미.
+  함수를 호출할 때 함수의 정의에서 명시된 매개변수의 수만큼 인수가 전달되지 않으면, php에서는 오류 발생.
+  하지만 디폴트 매개변수를 설정하면, 함수 호출 시 전달할 인수의 수를 유연하게 설정 가능.
+  php에서 디폴트 매개변수는 매개변수 이름과 함께 대입 연산자(=)를 이용해 설정.
+  function sum($value1, $value2=0. $value3=0) //value1은 반드시 인수로 전달받아야 하지만, value2,value3은 만약 전달받지 못하면 설정된 기본값을 사용.
+  function sum($value1=0, $value2, $value3=0){
+    return $value1 + $value2 = $value3;
+  }
+  echo sum(1,2,3) // 6
+  echo sum(1,2) // 3
+  echo sum(1) // erro 매개변수는 왼쪽부터 차례대로 대입되므로, 중간에 에러가 발생되면 종료됨
+  echo sum() // erro
 인수(argument)
 함수가 호출될 때 함수로 값을 전달해주는 변수
+  1. 가변 길이 인수 목록 (variable-length argument list)
+  함수를 선언할 때 전달받은 인수의 개수를 미리 정하지 않고, 호출할 때마다 유동적으로 인수를 넘기는 기능.
+  php5.5 이하에서는 func_num)args(), func_get_arg(), func_get_args() 함수를 사용하여 설정
+  php5.6 이상에서는 "..."토큰을 사용하여 간편하게 설정.
+  function sum(){
+    $sum = 0;
+    foreach(func_get_args() as $n){ //php5.5
+      $sum += $n;
+    }
+    return $sum;
+  }
+  위의 예제에서 func_get_args()함수는 sum()함수가 호출될 때 전달된 인수들을 배열의 형태로 반환.
+  -> sum()함수 내부에서는 매개변수 대신에 func_get_args()함수를 통해 인수에 접군 -> 인수의 개수에 신경 쓸 필요 없게됨.
+  function sum(...$num){ //php5.6
+    $sum = 0;
+    foreach($num as $n){
+      $sum += $n;
+    }
+    return $sum;
+  }
+  '...'토큰을 사용하여 함수가 호출될 때 전달받은 인수들을 배열의 형태로 저장 가능.
+  -> sum()함수 내부에서는 배열 $num를 이용하여 전달받은 인수에 접근 가능.
+  
+함수의 활용
+  1. 조건적인 함수(conditional function)
+  특정 조건을 만족할 때만 선언되는 함수.
+  $makefunc = true; 
+  // func(); 를 여기서는 함수가 선언되기 전이므로 불가. php 오류발생함
+  if($makefunc){
+    function func(){
+      echo "now you can use this func"
+    }
+    func(); // func()함수가 선언되었으므로 호출 가능
+  }
+  
+  2. 함수안의 함수(function within function)
+  php에서 함수 안에 또 다른 함수 선언 가능. php에서 모든 함수가 전역 함수이므로, 함수 내부에서 선언된 함수라도 외부에서 호출 가능.
+  function out(){
+    function in(){
+      echo "now you can use this func";
+    }
+  }
+  // in(); 함수 선언되기 전이므로 호출 불가
+  out(); // 가능
+  in(); // 함수 선언되었으므로 호출 가능.
+  
+  3. 재귀 함수(recursive function)
+  함수 내부에서 함수가 자기 자신을 또 다시 호출하는 함수. 끝없이 반복됨 -> 재귀 호출을 중단하는 조건 명령문 반드시 포함.
+  => 100번 이상의 재귀 호출은 스택의 한계에 도달하여 스크립트가 중단될 수 있으므로, 사용 안하는것이 좋음.
+  function factorial($num){
+    if($num > 1) //1이 될 때까지
+      return $num * factorial($num - 1); // 1씩 감소시킨 값을 전달하여 자기 자신을 계속 호출
+    else
+      return 1;
+  }
+  echo factorial(4);
+  
+  4. 가변 함수(variable function)
+  변수를 사용하여 함수를 호출하는 것을 의미. php에서 변수 이름에 괄호()를 붙이면 해당 변수의 값과 같은 이름을 가지는 함수를 호출.
+  -> 변수에 함수의 이름을 별도로 지정할 수 있음
+  function first(){
+    echo "first() 함수입니다.";
+  }
+  return second($para){
+    ehco "second() 함수 입니다.";
+    ehco "함수 호출 시 전달받은 인수값은 {$para}입니다";
+  }
+  $func = "first";
+  $func(); // first();
+  $func = "second";
+  $func(20); // second();
