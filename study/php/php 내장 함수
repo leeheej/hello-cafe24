@@ -1,0 +1,23 @@
+[변수 관련 함수]
+1. 변수의 타입 변경
+gettype() 함수는 전달받은 변수의 타입을 문자열로 반환. (단, float형은 "double"을 반환, 표준 타입이 아닌 경우엔 "unknown type" 반환)
+settype() 함수는 전달받은 변수의 타입을 boolean(bool), integer(int), string, object 중 변경
+-> php4.2 부터는 float, null 사용 가능. 성공적으로 변경하면 true, 못햇을 경우엔 false를 반환.
+$x = 5;
+echo gettype($x); // integer
+settype($x, "string");
+echo gettype($x); // string
+
+- is_array() // 전달받은 변수의 타입이 배열인지 확인
+- is_bool() // 전달받은 변수의 타입이 논리형인지 확인
+- is_callable() // 전달받은 변수의 내용을 함수처럼 호출할 수 있는지 확인
+- is_float(), is_double(), is_real() // 전달받은 변수의 타입이 실수인지 확인
+- is_int(), is_integer(), is_long() // 전달받은 변수의 타입이 정수인지 확인
+- is_null() // 전달받은 변수의 타입이 null인지 확인
+- is_numeric() // 전달받은 변수가 수나 숫자로 이루어진 문자열인지를 확인
+- is_object() // 전달받은 변수의 타입이 객체인지 확인
+- is_resource() // 전달받은 변수의 타입이 자원인지 확인
+- is_scalar() // 전달받은 변수가 스칼라값인지 확인 (integer, float, string, boolean 타입인지 확인 / php에서 array, object, resource 타입은 스칼라값 아님)
+- is_string() // 전달받은 변수의 타입이 문자열인지 확인
+
+2. 변수의 
