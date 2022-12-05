@@ -41,3 +41,25 @@ const cn2 = n2.toLocaleString('ko-KR', option);
 document.writeIn(cn1);
 document.writeIn('<br>');
 document.writeIn(cn2);
+
+**cf**
+//콤마찍기
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+//콤마풀기
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+}
+
+// 숫자만 추출
+function rechange(mon){
+    var ori_mon = Number(mon.replace(/[^0-9]/g,''));
+    return ori_mon;
+}
+// 숫자 콤마 넣기
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
