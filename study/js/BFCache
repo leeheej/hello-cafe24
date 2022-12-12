@@ -96,3 +96,5 @@ pagehide나 freeze 이벤트에서 항상 connection을 close하고, observer를
 이렇게 하면 다른 열린 탭에 영향을 미치지 않고 페이지를 안전하게 캐시할 수 있다. 
 (당연하겠지만, pageshow나 resume 이벤트에서 bfcache로 부터 복구됬을때 커넥션을 다시 연결 해주도록 하면 된다.)
 
+
+https://programmingsummaries.tistory.com/380
