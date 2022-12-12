@@ -1,1 +1,57 @@
 BFCache
+: 즉각적인 뒤로 및 앞으로 탐색을 가능하게 하는 브라우저 최적화.
+Back/forward cache의 약자로 브라우저 최적화 중 하나. 
+- 사용자가 브라우저 내에서 뒤로가기/앞으로가기 했을 경우 이전 페이지를 전체 캐싱해서 in memory로(자바스크립트 heap 영역까지) 가지고 있는 것을 말한다.
+- 전체 페이지를 in memory에 저장하므로 뒤로가기/앞으로가기 했을때 복구가 훨씬 빠르고, 그러다보니 사용자 경험을 굉장히 향상시킬 수 있다.
+
+마주할 수 있는 문제상황을 예시로 들면 아래와 같다.
+문제 상황1. (뒤로가기/앞으로가기시) BFCache로 인해 로그를 전송하는 코드가 호출 되지 않음.
+문제 상황2. (뒤로가기/앞으로가기시) 페이지 초기화를 위한 코드가 불리지 않음. 등등
+
+BFCache vs HTTP Cache
+- HTTP 캐시는 이전에 만들어진 요청에 대한 응답만 캐싱함.
+- 페이지 로딩에 필요한 최적화를 HTTP캐시로 모두 하기는 어렵기 때문에
+- BFCache를 사용하지 않고, 아무리 최적화를 잘 했다고 하더라도 BFCache를 사용한 경우가 무조건 빠르다.
+
+브라우저별 BFCache 지원 상황
+- Firefox, Safari → 몇 년전 부터 지원해 왔음(desktop, mobile 모두)
+- Chrome 
+    v86: Android(일부), cross-site navigation만 지원
+    v87: Android(전부), same-site navigation까지 지원 예정
+
+BFCache 작동을 판단할 수 있는 API 
+pageshow / pagehide (Page Transition API)
+: 거의 모든 브라우저에서 지원하는 이벤트(BFCache만큼 오래된 이벤트)
+- pageshow
+    - 페이지가 처음 로드될 때, 그리고 bfcache에서 페이지가 복원 될 때 마다 load 이벤트가 불린 직후에 실행된다.
+    - persisted property를 이용해서 BFCache로 복구되었는지 확인 할 수 있다.
+    window.addEventListener('pageshow', function(event){
+      if(event.persisted){
+        console.log('This page was restored from the bfcache');
+      }else{
+        console.log('This page was loaded normally');
+      }
+    });
+    
+- pagehide
+    - 페이지가 정상적으로 로드되지 않거거나, 브라우저가 페이지를 bfcache에 저장하려고 할 때 발생한다.
+    -  persisted property가 false면 bfcache에 저장되지 않았다는 뜻이다. 
+    - 브라우저가 페이지를 캐시하려고 했지만 캐시할 수 없게 만드는 요인이 있을 수 있기 때문에,
+      true라고 항상 bfcache에 캐싱되었다고 할 수는 없다. (=브라우저가 bf캐싱을 하려고 했다는 '의도'만 알 수 있다는 뜻)
+    window.addEventListener('pagehide', function(event){
+      if(event.persisted==true){
+        console.log('This page might be entering the bfcache.');
+      }else{
+        console.log('This page will unload normally and be discarded.')
+      }
+    });
+
+- page lifecycle event
+: 크롬 기반 브라우저에서만 지원되는 이벤트(새로 생김)
+  - resume
+    : BFCache로 들어가고 나올때 호출되는 이벤트 (그 외의 상황에서 호출되기도 함)
+    (CPU 사용량을 최소화하기 위해 백그라운드 탭이 동작되는 경우 등)
+    BFCache에서 페이지가 복원될 때 (pageshow 이벤트 직전에), 사용자가 정지된 배경 탭을 다시 방문할때 실행
+  - freeze
+    : pagehide 이벤트의 presisted 값이 true일 경우에, pagehide 이벤트 다음으로 호출됨
+      pagehide와 동일하게 브라우저가 BFCache를 하려고 했다는 '의도'만 알 수 있음.
