@@ -7,6 +7,7 @@ Back/forward cache의 약자로 브라우저 최적화 중 하나.
 마주할 수 있는 문제상황을 예시로 들면 아래와 같다.
 문제 상황1. (뒤로가기/앞으로가기시) BFCache로 인해 로그를 전송하는 코드가 호출 되지 않음.
 문제 상황2. (뒤로가기/앞으로가기시) 페이지 초기화를 위한 코드가 불리지 않음. 등등
+특히 onload 이벤트에 주요 자바스크립트 코드를 걸어놓은 경우, BFCache를 타게되면 페이지를 타게되면 진입시에 해당 자바스크립트 코드가 항상 재실행되는걸 보장하기 어려움
 
 BFCache vs HTTP Cache
 - HTTP 캐시는 이전에 만들어진 요청에 대한 응답만 캐싱함.
@@ -22,6 +23,9 @@ BFCache vs HTTP Cache
 BFCache 작동을 판단할 수 있는 API 
 pageshow / pagehide (Page Transition API)
 : 거의 모든 브라우저에서 지원하는 이벤트(BFCache만큼 오래된 이벤트)
+  새로 진입하든, 뒤로가기로 재진입하든 항상 발생하는 이벤트를 위해서 MDN의 BFCache에 대한 설명 페이지에서 제시함.
+  pageshow 이벤트의 경우, 뒤로가기로 재진입한 경우에도 발생하는 이벤트이므로 
+  페이지가 열릴 때마다 수행되어야하는 코드가 있다면 이 이벤트에 바인딩하는 것이 더 바람직함.
 - pageshow
     - 페이지가 처음 로드될 때, 그리고 bfcache에서 페이지가 복원 될 때 마다 load 이벤트가 불린 직후에 실행된다.
     - persisted property를 이용해서 BFCache로 복구되었는지 확인 할 수 있다.
@@ -32,6 +36,24 @@ pageshow / pagehide (Page Transition API)
         console.log('This page was loaded normally');
       }
     });
+    
+    window.onpageshow = function(event){
+        if(event.persisted){
+            console.log('bfcache로 부터 복원됨');
+        }else{
+            console.log('새로 열린 페이지');
+        }
+    }
+    콜백으로 넘겨지는 event 파라미터의 속성 중 persisted가 true 인 경우, bfcache로 부터 복원된 상태,
+    즉 뒤로가기 등으로 재인입한 상태입을 알 수 있기 때문에 좀 더 정밀한 컨트롤이 가능.
+    $(window).bind("pageshow", function(event){
+        if(event.originalEvent.persisted){
+            console.log('bfcache로 부터 복원됨');
+        }else{
+            console.log('새로 열린 페이지');
+        }
+    });
+    jquery를 사용하는 경우, 콜백의 파라미터가 한번 감싸지기 때문에 위와 같이 originalEvent를 통해 persisted 속성에 접근할 수 있음.
     
 - pagehide
     - 페이지가 정상적으로 로드되지 않거거나, 브라우저가 페이지를 bfcache에 저장하려고 할 때 발생한다.
@@ -98,3 +120,4 @@ pagehide나 freeze 이벤트에서 항상 connection을 close하고, observer를
 
 
 https://programmingsummaries.tistory.com/380
+https://blog.naver.com/PostView.nhn?blogId=qls0147&logNo=222157982248&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
