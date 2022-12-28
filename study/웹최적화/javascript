@@ -1,0 +1,135 @@
+HTTP 요청 줄이기
+Minify Your Code
+자바스크립트의 크기를 줄여주는 라이브러리들이 있습니다. 
+물론 개발중에는 사용하지 마세요. 대부분의 툴들은 변수이름을 바꾸고, 코드를 한줄로 바꿔버려서 디버깅하기 매우 어렵게 됩니다.
+CommonJS, AMD, RequireJS
+자바스크립트 자체에는 모듈이라는 개념이 없습니다. 
+이를 해결하기 위한 라이브러리들이 있습니다. https://requirejs.org/
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Sample Project</title>
+        <!-- data-main attribute tells require.js to load
+             scripts/main.js after require.js loads. -->
+        <script data-main="scripts/main" src="scripts/require.js"></script>
+    </head>
+    <body>
+        <h1>My Sample Project</h1>
+    </body>
+</html>
+Inside of main.js, you can use require() to load any other scripts you need:
+require(["helper/util"], function(util) {
+    //This function is called when scripts/helper/util.js is loaded.
+    //If util.js calls define(), then this function is not fired until
+    //util's dependencies have loaded, and the util argument will hold
+    //the module value for "helper/util".
+});
+
+Use Namespaces
+자바스크립트 자체에는 namespace 개념이 없습니다. 
+하지만 간단히 해결할 수 있습니다. MVC 를 구현하기 위해 다음처럼 클래스를 구현했다고 합시다
+var model = function() { ... };
+var view = function() { ... };
+var controller = function() { ... };
+위 코드 그대로 사용하면, 프로젝트의 다른 파일과 겹칠 확률이 높습니다. 
+하지만 객체(namespace) 를 만들어서 모아둔다면, 그럴 확률이 줄어들 겁니다.
+var MyAwesomeFramework = {
+    model: function() { ... },
+    view: function() { ... },
+    controller: function() { ... }
+}
+
+Design Patterns 활용하기.
+자바스크립트는 매우 많은 사람들이 쓰고 있고, 많은 것들이 만들어져 있습니다.
+디자인 패턴은, 자주 발생하는 문제들에 대한 많은 사람들이 해결책을 정리해 놓은 것입니다. 
+남이 제시한 해결책을 사용하는 것이 도움이 될 때가 많이 있습니다. 몇가지 예를 들어 보겠습니다
+-Constructor Pattern
+특정 타입의 객체를 만들 때 이 패턴을 사용하세요:
+var Class = function(param1, param2) {
+    this.var1 = param1;
+    this.var2 = param2;
+}
+Class.prototype = {
+    method:function() {
+        alert(this.var1 %2B "/" %2B this.var2);
+    }
+};
+다음 처럼 할 수도 있습니다:
+function Class(param1, param2) {
+    this.var1 = param1;
+    this.var2 = param2;
+    this.method = function() {
+        alert(param1 %2B "/" %2B param2);
+    };
+};
+var instance = new Class("value1", "value2");
+
+-Module Pattern
+모듈 패턴은 private 과 public 함수를 만들게 해줍니다. 
+예를들어 다음 코드에서 _index 와 privateMethod 는 private이고 increment 와 getIndex 은 public 입니다.
+var Module = (function() {
+    var _index = 0;
+    var privateMethod = function() {
+        return _index * 10;
+    }
+    return {
+        increment: function() {
+            _index %2B= 1;
+        },
+        getIndex: function() {
+            return _index;
+        }
+    };
+})();
+
+-Observer Pattern
+이벤트가 발생하면 옵저버들이 이벤트에 대해 알게 됩니다. 아래 예제 는 어떻게 Users 객체에 옵저버를 추가할 수 있는지 보여줍니다:
+var Users = {
+    list: [],
+    listeners: {},
+    add: function(name) {
+        this.list.push({name: name});
+        this.dispatch("user-added");
+    },
+    on: function(eventName, listener) {
+        if(!this.listeners[eventName]) this.listeners[eventName] = [];
+        this.listeners[eventName].push(listener);
+    },
+    dispatch: function(eventName) {
+        if(this.listeners[eventName]) {
+            for(var i=0; i<this.listeners[eventName].length; i%2B%2B) {
+                this.listeners[eventName][i](this);
+            }
+        }
+    },
+    numOfAddedUsers: function() {
+        return this.list.length;
+    }
+}
+
+Users.on("user-added", function() {
+    alert(Users.numOfAddedUsers());
+});
+Users.add("Krasimir");
+Users.add("Tsonev");
+
+-Function Chaining Pattern
+var User = {
+    profile: {},
+    name: function(value) {
+        this.profile.name = value;
+        return this;
+    },
+    job: function(value) {
+        this.profile.job = value;
+        return this;
+    },
+    getProfile: function() {
+        return this.profile;
+    }
+};
+var profile = User.name("Krasimir Tsonev").job("web developer").getProfile();
+console.log(profile);
+
+https://www.patterns.dev/posts/classic-design-patterns/
+
