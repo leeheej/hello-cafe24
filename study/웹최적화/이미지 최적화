@@ -116,3 +116,24 @@ img태그에서 지원하는 loading 속성의 경우, 아직 비표준이므로
 .img-box .b{background-position:0 -15px;}
 .img-box .c{background-position:0 -30px;}
 
+
+
+- php를 통해 프로그래밍 상으로 이미지ㅏ 압출하는 방법
+function compressImage($source, $destination, $quality) {
+    $info = getimagesize($source);
+    switch($info['mime']) {
+        case "image/jpeg":
+            $image = imagecreatefromjpeg($source);
+            imagejpeg($image, $destination, $quality);
+        break;
+        case "image/gif":
+            $image = imagecreatefromgif($source);
+            imagegif($image, $destination, $quality);
+        break;
+        case "image/png":
+            $image = imagecreatefrompng($source);
+            imagepng($image, $destination, $quality);
+        break;
+    }
+}
+compressImage('source.png', 'destination.png', 85);
