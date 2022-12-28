@@ -91,5 +91,28 @@ vp8이라는 비디오 코덱 기술을 기반으로 한 영상압축 방식을 
   </picture>
 
 - lazy loading
+최대한 사용자가 보이는 부분부터 로드되도록 처리하며, 사용자가 보이지 않는 부분은 lazy loading을 적용해서 사용자의 경험 저하를 막도록 함
+<img loading="lazy">
+태그 자체에서 지원하는 레이지 로딩을 사용하는 방법
+<img src="1px.gif" data-src="book.jpg" onload="loadReal(this)"/>
+function loadReal(img) {
+	if(img.style.display != "none"){
+		img.onload = null;
+		img.src = img.getAttribute("data-src")
+	}
+}
+자바스크립트를 사용하는 방법
+<img>태그의 src는 1px의 작고 투명한 파일을 설정한 후, data-src에 들어가있는 진짜 이미지를 로드해서 넣어주는 방법
+img태그에서 지원하는 loading 속성의 경우, 아직 비표준이므로 자바스크립트를 사용하는 방법을 추천.
+지연로딩을 지원하는 라이브러리 사용하는것을 추천
 
-  
+- CSS image sprite
+여러 개의 이미지를 합친 하나의 이미지. 첫 페이지 로딩속도를 줄여주는 가장 대표적인 방법. + 이미지 최적화 기법 중 가장 쉬움
+네트워크상에서는 실제로 10번의 이미지 요청을 1번의 요청으로 해결 가능 + 트래픽 절약되는 효과
+아이콘이나 버튼같은 이미지들을 하나로 합쳐 배경이미지로 만들고 position값으로 각각의 이미지들을 잘라서 사용
+.img-box{background:url(/web/upload/imgSet.png) no-repeat;}
+
+.img-box .a{background-position:0 0;}
+.img-box .b{background-position:0 -15px;}
+.img-box .c{background-position:0 -30px;}
+
