@@ -1,0 +1,53 @@
+Use CSS Preprocessors
+파일들을 여러개로 분리해서 작업하고, 나중에 하나의 CSS 파일로 합쳐서 유저에게 전달할 수 있습니다. 
+CSS preprocessor 는 변수, 중첩 블락, mixin 과 상속등 다양한 기능을 제공합니다. 
+CSS preprocessor 를 사용해도 코딩은 일반 CSS 와 매우 비슷하게 생겼습니다. 하지만 더 관리하기가 편해집니다. 
+Sass, LESS, Stylus. 등이 유명합니다. 다음은 LESS 의 예제입니다:
+.position(@top: 0, @left: 0) {
+    position: absolute;
+    top: @top;
+    left: @left;
+    text-align: left;
+    font-size: 24px;
+}
+.header {
+    .position(20px, 30px);
+    .tips {
+        .position(10px, -20px);
+    }
+    .logo {
+        .position(10px, 20px);
+    }
+}
+는 다음과 같이 변경됩니다.
+.header {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    text-align: left;
+    font-size: 24px;
+}
+.header .tips {
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    text-align: left;
+    font-size: 24px;
+}
+.header .logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    text-align: left;
+    font-size: 24px;
+}
+
+효율적인 CSS
+브라우저가 CSS selector 를 오른쪽에서 왼쪽으로 읽습니다.
+body ul li a {
+    color: #F000;
+    text-decoration: none;
+}
+위 코드는 매우 느립니다. 
+왜냐면 브라우저가 <a> 태그를 모두 찾은 후 그 부모들이 조건에 맞는지 검사하는 검사하는 식으로 동작하기 때문입니다. 
+또한 ID, class, tag, universal(*) 순으로 효율성이 줄어든다는 것도 알아 두시면 좋습니다.
