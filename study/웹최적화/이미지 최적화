@@ -137,3 +137,39 @@ function compressImage($source, $destination, $quality) {
     }
 }
 compressImage('source.png', 'destination.png', 85);
+
+
+- imagemin
+다양한 이미지 형식을 지원하고 빌드 스크립트 및 빌드 도구와 쉽게 통합되는 플러그인 중심의 구축 모듈
+
+이미지 형식	손실 플러그인  	무손실 플러그인
+JPEG	    imagemin-mozjpeg	imagemin-jpegtran
+PNG	    imagemin-pngquant	imagemin-optipng
+GIF	    imagemin-giflossy	imagemin-gifsicle
+SVG	    Imagemin-svgo	
+WebP	    imagemin-webp	
+
+Imagemin CLI 
+Imagemin CLI는 
+imagemin-gifsicle, imagemin-jpegtran, imagemin-optipng, imagemin-pngquant 및 imagemin-svgo의 5가지 플러그인과 함께 작동합니다. 
+Imagemin은 입력의 이미지 형식에 따라 적절한 플러그인을 사용합니다.
+"images/" 디렉터리의 이미지를 압축하고 동일한 디렉터리에 저장하려면 다음 명령을 실행하십시오(원본 파일 덮어쓰기).
+$ imagemin images/* --out-dir=images
+
+Imagemin npm 모듈
+만약 당신이 이 빌드 도구들 중 하나를 사용한다면, webpack, gulp 또는 grunt로 Imaginemin의 코드랩을 확인하십시오.
+Imagemin 자체를 노드 스크립트로 사용할 수도 있습니다. 
+이 코드는 "imagemin-mozjpeg" 플러그인을 사용하여 JPEG 파일을 50 품질로 압축합니다('0'은 최악, '100'은 최고):
+const imagemin = require('imagemin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+(async() => {
+  const files = await imagemin(
+      ['source_dir/*.jpg', 'another_dir/*.jpg'],
+      {
+        destination: 'destination_dir',
+        plugins: [imageminMozjpeg({quality: 50})]
+      }
+  );
+  console.log(files);
+})();
+
