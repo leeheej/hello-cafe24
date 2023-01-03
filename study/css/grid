@@ -20,3 +20,4 @@ Grid는 두 방향(가로-세로) 레이아웃 시스템 (2차원)
 
 .container {display: grid;}
 ![grid](https://user-images.githubusercontent.com/93635676/210317950-e9a0be10-ea68-4000-97b4-4da38245394f.jpg)
+
