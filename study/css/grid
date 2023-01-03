@@ -19,3 +19,4 @@ Grid는 두 방향(가로-세로) 레이아웃 시스템 (2차원)
 컨테이너가 Grid의 영향을 받는 전체 공간이고, 설정된 속성에 따라 각각의 아이템들이 어떤 형태로 배치되는 것
 
 .container {display: grid;}
+![grid](https://user-images.githubusercontent.com/93635676/210317950-e9a0be10-ea68-4000-97b4-4da38245394f.jpg)
