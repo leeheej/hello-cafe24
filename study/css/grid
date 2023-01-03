@@ -14,10 +14,71 @@ Grid는 두 방향(가로-세로) 레이아웃 시스템 (2차원)
 	<div class="item">H</div>
 	<div class="item">I</div>
 </div>
+
 부모 요소인 div.container를 Grid Container(그리드 컨테이너)
 자식 요소인 div.item들을 Grid Item(그리드 아이템)
 컨테이너가 Grid의 영향을 받는 전체 공간이고, 설정된 속성에 따라 각각의 아이템들이 어떤 형태로 배치되는 것
 
-.container {display: grid;}
 ![grid](https://user-images.githubusercontent.com/93635676/210317950-e9a0be10-ea68-4000-97b4-4da38245394f.jpg)
+* 그리드 컨테이너 (Grid Container)
+display: grid를 적용하는, Grid의 전체 영역. 
+Grid 컨테이너 안의 요소들이 Grid 규칙의 영향을 받아 정렬. 위 코드 <div class=”container”></div>가 Grid 컨테이너.
+* 그리드 아이템 (Grid Item)
+Grid 컨테이너의 자식 요소. 바로 이 아이템들이 Grid 규칙에 의해 배치. 위 코드에서 <div class=”item”></div>들이 Grid 아이템입니다.
+* 그리드 트랙 (Grid Track)
+Grid의 행(Row) 또는 열(Column)
+* 그리드 셀 (Grid Cell)
+Grid의 한 칸. <div>같은 실제 html 요소는 그리드 아이템이고, 이런 Grid 아이템 하나가 들어가는 “가상의 칸(틀)”
+* 그리드 라인(Grid Line)
+Grid 셀을 구분하는 선.
+* 그리드 번호(Grid Number)
+Grid 라인의 각 번호.
+* 그리드 갭(Grid Gap)
+Grid 셀 사이의 간격.
+* 그리드 영역(Grid Area)
+Grid 라인으로 둘러싸인 사각형 영역으로, 그리드 셀의 집합.
 
+- display: grid;
+Grid 컨테이너에 display: grid;를 적용하는게 시작
+.container {
+	display: grid;
+	/* display: inline-grid; */
+}
+
+- 그리드 형태 정의
+.container {
+	grid-template-columns: 200px 200px 500px;
+	/*fr은 fraction(뜻은 여기로).  1fr 1fr 1fr은 균일하게 1:1:1 비율인 3개*/
+	/* grid-template-columns: 1fr 1fr 1fr */
+	/* grid-template-columns: repeat(3, 1fr) */
+	/* grid-template-columns: 200px 1fr */
+	/* grid-template-columns: 100px 200px auto */
+
+	grid-template-rows: 200px 200px 500px;
+	/* grid-template-rows: 1fr 1fr 1fr */
+	/* grid-template-rows: repeat(3, 1fr) */
+	/* grid-template-rows: 200px 1fr */
+	/* grid-template-rows: 100px 200px auto */
+}
+grid-template-rows는 행(row)의 배치
+grid-template-columns는 열(column)의 배치
+
+- repeat 함수
+.container {
+	grid-template-columns: repeat(5, 1fr);
+	/* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 와 같음. repeat(3, 1fr 4fr 2fr); 이런 형태도 가능*/
+}
+
+- minmax 함수
+.container {
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, minmax(100px, auto));
+}
+minmax(100px, auto)의 의미는 최소한 100px, 최대는 자동으로(auto) 늘어나게
+
+
+
+
+
+
+https://studiomeal.com/archives/533
