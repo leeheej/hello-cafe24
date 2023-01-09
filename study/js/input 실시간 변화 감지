@@ -1,0 +1,13 @@
+$("#text-box").on("change keyup paste", function(){
+	alert("change");
+})
+input box에 사용자가 값을 입력하면 실시간으로 감지하는 함수이다
+
+$("#input-text").on("propertychange change keyup paste input", function(){
+	alert("change");
+});
+사용자가 일반적으로 입력했을경우에는 감지가 가능하지만 개발자도구로 변경했을 경우에는 감지가 잘 되지 않는다. 
+위처럼 하면 개발자 도구를 이용하여 값을 변경해도 감지가 가능하다.
+
+https://become-a-developer.tistory.com/entry/jquery-inputbox-text-%EB%B3%80%EA%B2%BD-%EC%8B%A4%EC%8B%9C%EA%B0%84-%EA%B0%90%EC%A7%80
+https://harrydony.tistory.com/755
