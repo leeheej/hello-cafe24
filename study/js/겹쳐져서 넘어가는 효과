@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>branch test</title>
+</head>
+<style>
+	body{position:relative; padding:0; margin:0;}
+	.b1{background:gray}
+	.b2{background:red}
+	.b3{background:yellow}
+	.b4{background:blue}
+	.container{height:100vh;  width:100%; top:0; position:absolute;}
+	.box{position:relative;height:100vh; width: 100%;}
+	.box.scrollfixed{position:fixed;top:0;}
+	.transp{display:none;width:100%; height:100vh;position:relative;}
+	.transp.on{display:block;}
+	.transp.on .in{position:absolute;top:0;width:100%; height:100vh;}
+	.test{width: 100%; height: 100vh; background: green; position: relative;}
+</style>
+<body>
+	<section class="box scrollfixed">
+		<div class="container b1">
+			qwertyuiopasdfghjklzxcvbnm
+		</div>	
+	</section>
+	<div class="transp on"><div class="in in1"></div></div>	
+	<section class="box">
+		<div class="container b2">qwertyuiopasdfghjklzxcvbnm</div>
+	</section>
+	<div class="transp on"><div class="in in2"></div></div>	
+	<section class="box">
+		<div class="container b3">qwertyuiopasdfghjklzxcvbnm</div>
+	</section>
+	<div class="transp on"><div class="in in3"></div></div>	
+	<section class="box">
+		<div class="container b4">qwertyuiopasdfghjklzxcvbnm</div>
+	</section>
+	<div class="transp on"><div class="in in4"></div></div>	
+	<div class="test"></div>
+</body>
+<script>
+	$(".box").each(function(i){
+		$(this).addClass('box'+i);
+	})
+	$(window).scroll(function() {
+		var wt = $(window).scrollTop();
+		$(".box").each(function(i){
+			var t = $(this).offset().top;
+			if(wt - t >= 0){
+				$(this).addClass("scrollfixed")
+			}
+		})
+		$(".in").each(function(i){
+			var t = $(this).offset().top;
+			console.log(wt - t);
+			if(wt - t < 0){
+				$(this).parents(".transp").prev(".box").removeClass("scrollfixed")
+			}
+		})
+		
+	})
+</script>
+</html>
