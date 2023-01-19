@@ -173,3 +173,5 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
   console.log(files);
 })();
 
+- webP 사용하기
+https://developers.google.com/speed/webp
