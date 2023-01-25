@@ -1,0 +1,94 @@
+페이지내에 anchor를 활용해서 접근하는 경우에는
+고정된 메뉴로 인해 의도하지 않게 화면이 보일 수 있음
+
+1.CSS 활용
+span태그를 활용하여 목적지 div 상단에 배치 후 영역을 차지하게 만듭니다.
+visiblity: hidden; 을 사용하게 되면 화면은 안보이지만 영역은 차지하는 속성을 이용합니다.
+<span class="anchor" id="about"></span>
+<div></div>
+
+<style>
+.anchor{
+    display: block;
+    height: 80px; /*고정메뉴 높이*/
+    margin-top: -80px; /*고정메뉴 높이*/
+    visibility: hidden;
+}
+</style>
+
+2.jquery 활용
+타겟의 offset을 잡아 스크롤 시 고정메뉴 만큼 빼고 스크롤을 하는 방법이다.
+개인적으로 jquery를 좋아하지 않기 때문에 사용하지 않았다.
+var offset = $(':target').offset();
+var scrollto = offset.top - 60; // minus fixed header height
+$('html, body').animate({scrollTop:scrollto}, 0);
+
+3.scroll-margin 활용
+scroll-margin 속성은 비교적 최근에 나온 것으로, 페이지간 스크롤 시에 margin을 적용한다.
+특히 anchor나 scroll-snap-type을 통해서 스크롤의 결과로 하나의 페이지를 보여주는 경우, 상단에 고정된 메뉴를 원하는 만큼 피할 수 있다.
+가장 쉽게 사용할 수 있으나, IE같은 구버전 브라우저는 사용하기 어려울 수 있다.
+.div_section {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;  //하나의 div를 페이지형태로 보여줌(Viewport Height의 100%)
+  scroll-margin-top: 80px; // 고정 메뉴 높이만큼 설정
+}
+
+출처 : https://velog.io/@nowod_it/CSS-fixed-sticky-%ED%97%A4%EB%8D%94-%EC%82%AC%EC%9A%A9-%EC%8B%9C-anchor-%EC%9C%84%EC%B9%98-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95-scroll-margin
+
+스크롤 앵커링
+:
+웹의 강점 중 하나는 점진적 로딩입니다. 로딩이 다 끝날 때까지 기다리지 않더라도 그동안 콘텐츠를 사용할 수가 있죠.
+하지만 로딩이 완료되면서 보고 있던 콘텐츠가 아래로 밀린다는 문제가 있었습니다
+보고 있던 콘텐츠를 밀어내고 다른 요소가 비집고 들어온다면 사용자 경험이 영 좋지 않겠죠.
+이렇게 뷰포트 밖에서 일어난 변화에 방해를 받아 사용자의 주의가 분산되는 경우가 종종 있었습니다.
+광고를 포함한 iframe을 스크립트로 삽입하거나 느린 네트워크 환경에서 크기가 정해져 있지 않은 이미지를 불러오는 경우가 그 예입니다.
+게다가 모바일 환경에서는 디스플레이가 작아서 더욱 거슬리는 문제였는데요,
+이러한 문제를 해결하고자 나타난 것이 바로 스크롤 앵커링 기능입니다.
+
+앵커링이 하는 일
+스크롤 앵커링은 레이아웃이 변경되더라도 문서를 보고 있는 사용자의 시야를 안정적으로 유지될 수 있도록 해줍니다.
+아래 예시를 통해 스크롤 앵커링이 UX를 얼마나 향상시키는지 볼 수 있습니다.
+각 영역을 스크롤 하면 1초 후 상단에 초록색 박스가 생기는데, overflow-anchor 속성이 있으면 방해되지 않도록 스크롤이 조절됩니다.
+
+이 기능은 돔 노드를 선택해 ‘앵커 노드(Anchor Node)’라고 하고, 앵커 노드의 위치를 추적하며 그에 따른 스크롤 옵셋을 조정합니다.
+앵커 노드를 주시하고 있다가 새로운 요소의 등장(돔 추가, display 처리 등)으로 위치가 바뀌면 알아서 스크롤을 앵커 노드에 맞춰 줍니다.
+이 기능을 지원하는 브라우저라면 기본적으로 스크롤 앵커링이 활성화 상태입니다.
+기본적으로 활성화 상태지만 필요 없을 때 해제 처리할 수 있는, 이른바 옵트 아웃 속성입니다.
+이 속성은 한 번 해제하면 하위 요소에서 다시 설정하는 것은 불가합니다.
+즉, document에서 overflow-anchor: none으로 옵트 아웃하면 문서 내 어떤 요소에서도 overflow-anchor: auto로 옵트 인 할 수 없습니다. (참고: MDN)
+
+Chrome 브라우저에서만 버튼 또는 a 태그와 같은 포커스가능 요소를 클릭한 경우 현상이 발생
+또, 돔 추가뿐만 아니라 display나 max-height 변경으로 숨김 처리 해제하는 경우에도 발생
+버튼이 화면 밖으로 움직이자 스크롤이 그에 맞춰 움직인 것
+Chrome 84부터 발생한 것으로 보임.
+
+overflow-anchor: none
+으로 해결 가능
+
+[히스토리]
+그렇다면 이 스크롤 앵커링은 언제부터 우리 곁에 스리슬쩍 있었던 걸까요?
+이 스펙은 WICG(Web Incubator Community Group)에서 제안된 내용입니다.
+WICG는 W3C의 커뮤니티 그룹으로, 복작복작 토론하면서 아이디어를 제안하고 발전시켜나가는 곳입니다.
+이렇게 제안된 내용이 W3C 워킹 그룹을 거쳐 권고 표준안이 되는 걸 목표로 합니다. (참고: WICG 소개페이지)
+2016년 Chrome 51부터 flag로 활성 가능한 기능으로 추가되었고,
+2017년 Chrome 56부터 기본 활성화 상태가 되었습니다.
+생각보다 오래 전에 나온 스펙이었네요!
+참고로 Firefox는 66부터, Opera는 43, Edge는 79부터 지원합니다.
+IE는 (당연히) 지원되지 않고, Safari도 아직 지원 전입니다.
+상세한 브라우저 지원 여부는 Can I use...에서 볼 수 있습니다
+이후 W3C TAG의 검토를 받아 CSSWG 스펙으로 마이그레이션되었습니다.
+앞으로는 W3C의 워킹그룹이 공식적인 문서를 게시하는 스펙이 됐다는 거죠.
+2020년 2월에 스크롤 앵커링에 대한 첫번째 공식 초안(First Public Working Draft)이 게시되었고,
+현재 CSS Scroll Anchoring Module Level 1의 초안 문서(Working Draft)에서 관련 내용을 찾아볼 수 있습니다.
+정리하면...
+  ▪︎  WICG에서 스크롤 앵커링 논의
+  ▪︎  Chrome 51에서 실험적 기능(chrome://flags)으로 추가됨
+  ▪︎  Chrome 56에서 기본 기능으로 추가됨
+  ▪︎  CSSWG 스펙이 됨
+  ▪︎  FPWD 게시
+  ▪︎  WD 업데이트 중
+ https://nykim.work/89
