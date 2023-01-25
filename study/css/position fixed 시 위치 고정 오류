@@ -1,0 +1,40 @@
+페이지내에 anchor를 활용해서 접근하는 경우에는
+고정된 메뉴로 인해 의도하지 않게 화면이 보일 수 있음
+
+1.CSS 활용
+span태그를 활용하여 목적지 div 상단에 배치 후 영역을 차지하게 만듭니다.
+visiblity: hidden; 을 사용하게 되면 화면은 안보이지만 영역은 차지하는 속성을 이용합니다.
+<span class="anchor" id="about"></span>
+<div></div>
+
+<style>
+.anchor{
+    display: block;
+    height: 80px; /*고정메뉴 높이*/
+    margin-top: -80px; /*고정메뉴 높이*/
+    visibility: hidden;
+}
+</style>
+
+2.jquery 활용
+타겟의 offset을 잡아 스크롤 시 고정메뉴 만큼 빼고 스크롤을 하는 방법이다.
+개인적으로 jquery를 좋아하지 않기 때문에 사용하지 않았다.
+var offset = $(':target').offset();
+var scrollto = offset.top - 60; // minus fixed header height
+$('html, body').animate({scrollTop:scrollto}, 0);
+
+3.scroll-margin 활용
+scroll-margin 속성은 비교적 최근에 나온 것으로, 페이지간 스크롤 시에 margin을 적용한다.
+특히 anchor나 scroll-snap-type을 통해서 스크롤의 결과로 하나의 페이지를 보여주는 경우, 상단에 고정된 메뉴를 원하는 만큼 피할 수 있다.
+가장 쉽게 사용할 수 있으나, IE같은 구버전 브라우저는 사용하기 어려울 수 있다.
+.div_section {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;  //하나의 div를 페이지형태로 보여줌(Viewport Height의 100%)
+  scroll-margin-top: 80px; // 고정 메뉴 높이만큼 설정
+}
+
+출처 : https://velog.io/@nowod_it/CSS-fixed-sticky-%ED%97%A4%EB%8D%94-%EC%82%AC%EC%9A%A9-%EC%8B%9C-anchor-%EC%9C%84%EC%B9%98-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95-scroll-margin
