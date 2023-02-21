@@ -1,0 +1,58 @@
+사용작 폼 요소를 클릭하거나 tab키를 눌러 요소로 이동하면 해당 요소가 focus 됩니다.
+autoFocus라는 html 속성을 사용해도 요소를 포커스 할 수 있는데, 이 속성이 있는 요소는 페이지가 로드된 후 자동으로 포커싱이 됩니다.
+이 외에도 요소를 포커싱 할 수 있는 방법은 다양합니다.
+요소를 포커싱한다는 것은 일반적으로 "여기에 데이터를 입력할 준비를 하라"는 것을 의미하기 때문에 요소 포커싱이 이뤄지는 순간엔 요구사항을 충족시키는 초기화 코드를 실행할 수 있습니다.
+
+요소가 포커스를 잃는 순간(blur)은 요소가 포커스를 얻는 순간보다 더 중요할 수 있습니다.
+사용자가 다른 곳을 클릭하거나, tab키를 눌러 다음 폼 필드로 이동하면 포커스 상태의 요속 포커스를 잃게 됩니다.
+이 외에도 다양한 방법을 사용해 포커스를 잃게 할 수 있습니다.
+요소가 포커스를 잃는 것은 대게 "데이터 입력이 완료되었다"는 것을 의미하기 때문에,
+포커싱이 해제되는 순간엔 데이터를 체크하거나 입력된 데이터를 저장하기 위해 서버에 요청을 보내는 등의 코드를 실행할 수 있습니다.
+
+focus 이벤트는 요소가 포커스를 받을때,
+blur 이벤트는 요소가 포커스를 잃을 때 발생.
+
+<body>
+ e-mail : <input type="email" id="input">
+ <div id="error"></div>
+ 
+ <script>
+ input.onblur = function(){
+  if(!input.value.includes('@')){ //@ 유무를 이용해 유효한 이메일 주소가 아닌지 체크
+    input.classList.add('invaild');
+    error.innerHTM = "올바른 이메일 주소를 입력하세요.";
+  }
+ };
+ 
+ input.onfocus = funtion(){
+  if(this.classList.contains('invaild')){
+    // 사용자가 새로운 값을 입력하려고 하므로 에러 메세지를 지움
+    this.classList.remove('invaild');
+    error.innerHTML = "";
+  }
+ };
+ </script>
+</body>
+
+
+elem.focus()와 elem.blur() 메서드를 사용하면 요소에 포커스를 줄 수도 있고 제거할 수도 있습니다.
+<body>
+e-mail : <input type="email" id="input">
+<input type="text" placeholder="이메일 형식이 아닌 값을 입력하고 여기를 클릭화세요">
+
+<script>
+input.onblur = function(){
+  if(!this.value.includes('@')){
+    //이메일이 아님 -> 에러 출력
+    this.classList.add("error");
+    input.focus();
+  }else{
+    this.classList.remove("error");
+  }
+};
+</script>
+</body>
+이메일이 아닌 값을 입력하고 tab키나 다른 곳을 클릭해 <input>을 벗어나려 하면 onblur 메서드가 동작해 포커스를 다시 입력 필드로 돌려놓습니다.
+여기서 주의사항은, onblur는 요소가 포커스를 잃고 난 후에 발생하기 때문에 onblur 안에서 event.preventDefault()를 호출해서 포커스를 잃게 하는걸 막을 수 없다는 사실입니다.
+
+https://ko.javascript.info/focus-blur
