@@ -1,0 +1,34 @@
+clip-path
+
+none
+url : svg 요소를 clipping(조각)한다.
+
+[clip-path shape 값]
+
+url() // CSS에서 사용할 외부 리소스를 가져옴
+
+circle(radius at X Y); //원형
+clip-path: circle(100px at 20% 20%);
+clip-path: circle(100px); // 반지름이 100px인 원 
+
+ellipse() // 타원형
+ellipse(horizontal radius vertical radius at X Y);
+clip-path: ellipse(100px 100px at 10% 10%);
+clip-path: ellipse(100px 50px); // 가로 100px 세로 50px 타원형
+
+triangle()
+triangle(좌측 상단 X Y, 우측 상단 X Y, 하단 X Y);
+clip-path: triangle(10% 10%, 20% 20%, 30% 30%);
+
+polygon() // 다각형
+polygon(시계방향 꼭지점)
+clip-path: polygon(좌측 상단, 우측 상단, 우측 하단, 좌측 하단);
+clip-path: polygon(100px 0px, 200px 200px, 0 200px); // 삼각형
+clip-path: polygon(100px 0px, 200px 100px, 100px 200px, 0 100px); // 마름모
+
+path()
+
+inset(); //  직사각형
+clip-path: inset(20px round 20% ); // 모서리가 둥근 사각형 
+
+rect() // 사각형 생성하는 함수
