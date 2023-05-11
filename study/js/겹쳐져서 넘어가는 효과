@@ -65,3 +65,66 @@
 	})
 </script>
 </html>
+
+버전2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>branch test</title>
+</head>
+<style>
+	body{position:relative; padding:0; margin:0;}
+	.box{position:relative;width: 100%;}
+	.b1{background:gray;padding:300px;}
+	.b2{background:red;padding:300px;}
+	.b3{background:yellow;padding:300px; width: 90%; box-sizing: border-box;}
+	.b4{background:blue;padding:300px;}
+	.box.scrollfixed{position:fixed;top:0;}
+	.transp{display:none;width:100%; position:relative;}
+	.transp.on{display:block;}
+	.transp.on .in{width:100%;}
+	.test{width: 100%;height:500px; background: green; position:relative;}
+	.unstack{width:100%;}
+	.mainOver{position:relative;}
+</style>
+<body>
+	<section class="">
+		<div class="b1">
+			qwertyuiopasdfghjklzxcvbnm
+		</div>	
+	</section>
+	<section class="">
+		<div class="b2">qwertyuiopasdfghjklzxcvbnm</div>
+	</section>
+	<div class="mainOver">
+		<section class="box box3">
+			<div class="b3">qwertyuiopasdfghjklzxcvbnm</div>
+		</section>
+		<div class="unstack"></div>
+	</div>	
+	<section class="box">
+		<div class="b4">qwertyuiopasdfghjklzxcvbnm</div>
+	</section>
+	<div class="test"></div>
+</body>
+
+<script>
+	$(window).scroll(function(){
+		var wt = $(window).scrollTop();
+		var overheight = $(".b3").outerHeight();
+		var overTop = $(".mainOver").offset().top;
+		var overGap = wt - overTop;
+		if(overGap >= 0){
+			$(".box3").addClass("scrollfixed");
+			$(".unstack").attr("style","height:"+overheight+"px;");
+		}else{
+			$(".box3").removeClass("scrollfixed");
+			$(".unstack").attr("style","height:0");
+		}
+	});
+</script>
+</html>
