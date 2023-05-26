@@ -1,0 +1,26 @@
+SHOPIFY TIMER
+
+https://happypoints.io/blog/create-shopify-product-countdown-timer-without-app-c2-stt-77/
+참고해서 생성!
+
+로그인정보
+https://admin.shopify.com/store/challans-de-paris
+matthew@opusasia.kr
+masterd12!
+
+PRODUCT -> 타이머 원하는 제품 선택 -> TAG 에 TIME 추가
+EX)
+Time_2023/05/29 00:00:00
+
++ 해당 제품에 적용된 템플리 번호 확인!
+
++ ONLINE SOTRE -> THEMES ->  대표 적용 테마에서 ... 클릭해서 EDIT CODE 열기 -> gem.product-'적용 템플리 번호'-templete 찾아가기
+-> 
+<!--GEM_HEADER_END-->
+<!--Gem_Page_Main_Editor--><div class="clearfix"></div>{% include 'countdown' %}<div class="gryffeditor">
+해당 위치에서
+{% include 'countdown' %}
+추가
+
+ef)
+디자인 및 코드 수정은 snippets 폴더 안 countdown 에서 !!
