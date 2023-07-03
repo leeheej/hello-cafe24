@@ -25,3 +25,15 @@ javascript로 표현 가능한 방벙을 간단하게 css로 구현 가능하지
   <div class="content"> // width:50%; position:relative; 
   </div>
 </section>
+
+
+<position sticky가 동작안하는 이유? 부모요소 조건있음~ >
+1. sticky속성을 갖는 요소들은 자신의 부모 요소안에서만 적용됨.
+
+2. 부모태그에 무조건 height 높이 값이 들어가 있어야함.
+
+-------부모  height 높이 값만큼 sticky가 고정된다!!!!!!
+
+3. 부모요소중에 overflow: hidden, auto, scroll 속성이 적용되어 있으면 안된다.
+
+3. IE지원X, IE는 잘안쓰니까 3번은 패스~
